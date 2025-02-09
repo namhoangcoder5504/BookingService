@@ -4,31 +4,32 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "blog")
+@Table(name = "services")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Blog {
+public class ServiceEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "blog_id")
-    Long blogId;
+    @Column(name = "service_id")
+    Long serviceId;
 
-    String title;
+    String name;
 
     @Column(columnDefinition = "TEXT")
-    String content;
+    String description;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    User author;
+    BigDecimal price;
+
+    Integer duration;
 
     @Column(name = "created_at")
     LocalDateTime createdAt;

@@ -1,6 +1,5 @@
 package BookingService.BookingService.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,11 +13,16 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Wishlist {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long wishlistId;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    User user;
+
     @ManyToOne
     @JoinColumn(name = "service_id")
-    private Service service;
+    ServiceEntity service;
 }
