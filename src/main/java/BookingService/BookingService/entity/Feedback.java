@@ -1,6 +1,5 @@
 package BookingService.BookingService.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -16,19 +15,29 @@ import java.time.LocalDateTime;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Feedback {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String feedbackId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "feedback_id")
+    Long feedbackId;
+
     @ManyToOne
     @JoinColumn(name = "booking_id")
-    private Booking booking;
+    Booking booking;
+
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private User customer;
+    User customer;
+
     @ManyToOne
     @JoinColumn(name = "specialist_id")
-    private User specialist;
-    private Integer rating;
-    private String comment;
-    private LocalDateTime createdAt;
+    User specialist;
+
+    int rating;
+
+    @Column(columnDefinition = "TEXT")
+    String comment;
+
+    @Column(name = "created_at")
+    LocalDateTime createdAt;
 }
